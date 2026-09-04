@@ -13,16 +13,21 @@ A modern, full-stack application designed to bridge the gap between talented stu
   ![AI Navigator Readiness](./assets/screenshots/ai_navigator_readiness.png)
   ![AI Navigator Resume](./assets/screenshots/ai_navigator_resume.png)
 - **Skill Assessments & Practice**: Take assessments to prove proficiency and track problem-solving progress.
+  ![Practice Section](./assets/screenshots/practice.png)
+  ![Notes Section](./assets/screenshots/notes.png)
 - **Job Discovery**: Browse and apply for tailored job opportunities.
   ![Jobs List](./assets/screenshots/jobs.png)
 - **Saved Opportunities**: Keep track of roles you're interested in.
   ![Saved Jobs](./assets/screenshots/saved_jobs.png)
 
 ### For Recruiters
-- **AI Hiring Insights**: Instantly identify top-matched candidates for active job postings with automated match scores.
-- **Job Management**: Create and manage job postings with custom requirements and screening questions.
-- **Candidate Tracking**: Efficiently manage applications through various stages (Review, Shortlisted, Interview, Hired).
 - **Dashboard Analytics**: Gain actionable insights with visual trends on applications and candidate engagement.
+  ![Recruiter Dashboard](./assets/screenshots/recruiter_dashboard.png)
+- **AI Hiring Insights**: Instantly identify top-matched candidates for active job postings with automated match scores.
+  ![Recruiter Candidates](./assets/screenshots/recruiter_candidates.png)
+- **Job Management**: Create and manage job postings with custom requirements and screening questions.
+  ![Recruiter Postings](./assets/screenshots/recruiter_postings.png)
+- **Candidate Tracking**: Efficiently manage applications through various stages (Review, Shortlisted, Interview, Hired).
 
 ## 💻 Tech Stack
 

@@ -21,13 +21,41 @@ export default function ProblemTracker({ searchQuery }) {
     const loadData = async () => {
       setLoading(true)
       const data = await fetchProblems()
-      // Initialize properties
-      const enhancedData = data.map(p => ({ ...p, isBookmarked: false, note: '', insight: '' }))
-      setProblems(enhancedData)
+      const savedData = JSON.parse(localStorage.getItem('aurix_practice_data')) || {}
+      
+      const enhancedData = data.map(p => {
+        const local = savedData[p.id] || {}
+        return { 
+          ...p, 
+          isBookmarked: local.isBookmarked || false, 
+          note: local.note || '', 
+          insight: local.insight || '',
+          status: local.status || p.status || 'Not Started'
+        }
+      })
+      
+      // Also load custom added problems
+      const customProblems = JSON.parse(localStorage.getItem('aurix_custom_problems')) || []
+      
+      setProblems([...customProblems, ...enhancedData])
       setLoading(false)
     }
     loadData()
   }, [])
+
+  const persistToLocal = (updatedProblems) => {
+    const dataToSave = {}
+    updatedProblems.forEach(p => {
+      // Save state for all problems (mock + custom)
+      dataToSave[p.id] = {
+        isBookmarked: p.isBookmarked,
+        note: p.note,
+        insight: p.insight,
+        status: p.status
+      }
+    })
+    localStorage.setItem('aurix_practice_data', JSON.stringify(dataToSave))
+  }
 
   const filteredProblems = problems.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -36,17 +64,21 @@ export default function ProblemTracker({ searchQuery }) {
   })
 
   const toggleStatus = (id) => {
-    setProblems(problems.map(prob => 
+    const updated = problems.map(prob => 
       prob.id === id 
         ? { ...prob, status: prob.status === 'Solved' ? 'Not Started' : 'Solved' } 
         : prob
-    ))
+    )
+    setProblems(updated)
+    persistToLocal(updated)
   }
 
   const toggleBookmark = (id) => {
-    setProblems(problems.map(prob => 
+    const updated = problems.map(prob => 
       prob.id === id ? { ...prob, isBookmarked: !prob.isBookmarked } : prob
-    ))
+    )
+    setProblems(updated)
+    persistToLocal(updated)
   }
 
   const openNoteModal = (problem) => {
@@ -58,11 +90,13 @@ export default function ProblemTracker({ searchQuery }) {
 
   const saveNote = () => {
     if (!selectedProblemForNote) return
-    setProblems(problems.map(prob => 
+    const updated = problems.map(prob => 
       prob.id === selectedProblemForNote.id 
         ? { ...prob, note: noteText, insight: insightText, status: tempStatus } 
         : prob
-    ))
+    )
+    setProblems(updated)
+    persistToLocal(updated)
     setSelectedProblemForNote(null)
     setNoteText('')
     setInsightText('')
@@ -84,7 +118,15 @@ export default function ProblemTracker({ searchQuery }) {
       insight: ''
     };
     
-    setProblems([added, ...problems]);
+    const updatedProblems = [added, ...problems];
+    setProblems(updatedProblems);
+    
+    // Persist custom problem separately to easily append to mock data on reload
+    const customProblems = JSON.parse(localStorage.getItem('aurix_custom_problems')) || [];
+    localStorage.setItem('aurix_custom_problems', JSON.stringify([added, ...customProblems]));
+    // Also persist its initial state
+    persistToLocal(updatedProblems);
+    
     setIsAddModalOpen(false);
     setNewProblem({ name: '', link: '', difficulty: 'Medium', topic: '' });
   }

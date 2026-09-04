@@ -90,7 +90,14 @@ export default function LanguagePracticeCard() {
         {languages.map(lang => (
           <div 
             key={lang.id}
-            onClick={() => setSelectedLanguage(lang.id)}
+            onClick={() => {
+              setSelectedLanguage(lang.id);
+              if (window.innerWidth < 768) {
+                setShowMobileWarning(true);
+              } else {
+                setShowComingSoonModal(true);
+              }
+            }}
             className={`flex flex-col items-center justify-center space-y-1.5 p-2 rounded-xl border transition-all cursor-pointer ${
               selectedLanguage === lang.id 
                 ? 'bg-gray-800 border-gray-600 shadow-[0_0_10px_rgba(123,50,217,0.1)]' 
@@ -103,7 +110,16 @@ export default function LanguagePracticeCard() {
         ))}
         
         {/* 'More' Button */}
-        <div className="flex flex-col items-center justify-center space-y-2 p-2 rounded-xl border border-transparent bg-[#181f2e] hover:bg-gray-800 transition-all cursor-pointer">
+        <div 
+          onClick={() => {
+            if (window.innerWidth < 768) {
+              setShowMobileWarning(true);
+            } else {
+              setShowComingSoonModal(true);
+            }
+          }}
+          className="flex flex-col items-center justify-center space-y-2 p-2 rounded-xl border border-transparent bg-[#181f2e] hover:bg-gray-800 transition-all cursor-pointer"
+        >
           <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
             <MoreHorizontal className="w-4 h-4 text-gray-400" />
           </div>

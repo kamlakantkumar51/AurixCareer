@@ -4,6 +4,10 @@ A modern, full-stack application designed to bridge the gap between talented stu
 
 ## 🚀 Features
 
+### ✨ Beautiful 3D User Interface
+*Screenshot of the platform goes here*
+![AurixCareer UI Placeholder](https://placehold.co/1200x600/121826/ffffff?text=AurixCareer+Platform+UI)
+
 ### For Students
 - **Smart Profile Building**: Create a comprehensive portfolio highlighting skills, projects, and education.
 - **Skill Assessments & Practice**: Take assessments to prove proficiency and track problem-solving progress.

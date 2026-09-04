@@ -41,6 +41,7 @@ export const mockApplications = [
   {
     id: 'app-1',
     jobId: 'job-1',
+    job: mockJobs[0],
     status: 'REVIEW',
     matchScore: 92,
     createdAt: new Date().toISOString(),
@@ -55,6 +56,7 @@ export const mockApplications = [
   {
     id: 'app-2',
     jobId: 'job-2',
+    job: mockJobs[1],
     status: 'SHORTLISTED',
     matchScore: 85,
     createdAt: new Date().toISOString(),

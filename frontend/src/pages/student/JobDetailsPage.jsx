@@ -103,27 +103,36 @@ export default function JobDetailsPage() {
 
             <h3 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">Responsibilities</h3>
             <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-600 dark:text-gray-300">
-              {job.responsibilities.map((req, idx) => (
+              {(job.responsibilities || []).map((req, idx) => (
                 <li key={idx}>{req}</li>
               ))}
+              {(!job.responsibilities || job.responsibilities.length === 0) && (
+                <li>No specific responsibilities listed.</li>
+              )}
             </ul>
 
             <h3 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">Required Skills</h3>
             <div className="flex flex-wrap gap-2 mb-6">
-              {job.skills.map((skill, idx) => (
-                <span key={idx} className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700">
-                  {skill}
-                </span>
-              ))}
+              {(job.skills || []).map((skillObj, idx) => {
+                const skillName = typeof skillObj === 'string' ? skillObj : skillObj.skill?.name || skillObj.name;
+                return (
+                  <span key={idx} className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700">
+                    {skillName}
+                  </span>
+                );
+              })}
             </div>
 
             <h3 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">Preferred Skills</h3>
             <div className="flex flex-wrap gap-2">
-              {job.preferredSkills.map((skill, idx) => (
+              {(job.preferredSkills || []).map((skill, idx) => (
                 <span key={idx} className="px-3 py-1.5 bg-gray-50 dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 text-sm rounded-lg border border-gray-200 border-dashed dark:border-gray-700">
                   {skill}
                 </span>
               ))}
+              {(!job.preferredSkills || job.preferredSkills.length === 0) && (
+                <span className="text-gray-500 text-sm italic">None listed</span>
+              )}
             </div>
           </div>
         </div>

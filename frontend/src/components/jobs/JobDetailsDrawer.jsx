@@ -148,11 +148,14 @@ export default function JobDetailsDrawer({ job, isOpen, onClose, onSave, onApply
             <div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Required Skills</h3>
               <div className="flex flex-wrap gap-2">
-                {job.skills.map(skill => (
-                  <span key={skill} className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/10 text-blue-700 dark:text-blue-400 rounded-lg text-sm font-medium border border-blue-100 dark:border-blue-900/30">
-                    {skill}
-                  </span>
-                ))}
+                {job.skills.map((skillObj, idx) => {
+                  const skillName = typeof skillObj === 'string' ? skillObj : skillObj.skill?.name || skillObj.name;
+                  return (
+                    <span key={idx} className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/10 text-blue-700 dark:text-blue-400 rounded-lg text-sm font-medium border border-blue-100 dark:border-blue-900/30">
+                      {skillName}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           )}

@@ -99,14 +99,21 @@ export default function RecruiterSearch() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {candidates.map((candidate, idx) => {
               const MOCK_PROFILES = [
-                { role: 'Frontend Developer', skills: ['React', 'Tailwind', 'JavaScript', 'TypeScript'] },
+                { role: 'Software Engineer', skills: ['React', 'JavaScript', 'Node.js', 'TypeScript'] },
+                { role: 'Frontend Developer', skills: ['React', 'Tailwind', 'JavaScript', 'Next.js'] },
                 { role: 'Data Scientist', skills: ['Python', 'TensorFlow', 'SQL', 'Pandas'] },
                 { role: 'Full Stack Engineer', skills: ['Node.js', 'React', 'MongoDB', 'Express'] },
                 { role: 'Product Manager', skills: ['Agile', 'Jira', 'Scrum', 'Roadmapping'] },
                 { role: 'UI/UX Designer', skills: ['Figma', 'Adobe XD', 'CSS', 'Wireframing'] },
                 { role: 'DevOps Engineer', skills: ['Docker', 'Kubernetes', 'AWS', 'CI/CD'] },
               ];
-              const mockProfile = MOCK_PROFILES[idx % MOCK_PROFILES.length];
+              // idx 0 -> Frontend Developer (MOCK_PROFILES[1])
+              // idx 1 -> Software Engineer (MOCK_PROFILES[0])
+              let mappedIdx = idx;
+              if (idx === 0) mappedIdx = 1;
+              else if (idx === 1) mappedIdx = 0;
+              
+              const mockProfile = MOCK_PROFILES[mappedIdx % MOCK_PROFILES.length];
               const displayRole = candidate.targetRole || mockProfile.role;
               const displaySkills = candidate.skills?.length > 0 
                 ? candidate.skills 

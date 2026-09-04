@@ -31,8 +31,8 @@ export default function JobsDashboard() {
     const loadUserJobData = async () => {
       try {
         const [saved, applied] = await Promise.all([getSavedJobs(), getAppliedJobs()]);
-        setSavedJobIds(new Set(saved))
-        setAppliedJobIds(new Set(applied))
+        setSavedJobIds(new Set(saved.data || []))
+        setAppliedJobIds(new Set(applied.data || []))
       } catch (e) {
         console.error("Failed to load user job data", e)
       }
@@ -77,7 +77,7 @@ export default function JobsDashboard() {
     }))
     
     // Sort
-    result.sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt))
+    result.sort((a, b) => new Date(b.createdAt || b.postedAt) - new Date(a.createdAt || a.postedAt))
     
     return result
   }, [jobs, savedJobIds, appliedJobIds])

@@ -4,25 +4,35 @@ export const mockJobs = [
   {
     id: 'job-1',
     title: 'Senior Frontend Developer',
+    company: 'TechFlow Solutions',
+    companyLogo: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=100&h=100&fit=crop&auto=format',
     description: 'Looking for an experienced React developer to lead our frontend team.',
     type: 'FULL_TIME',
+    employmentType: 'Full-Time',
     location: 'Remote',
     salaryMin: 120000,
     salaryMax: 150000,
+    currency: '$',
     status: 'ACTIVE',
-    createdAt: new Date().toISOString(),
+    createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+    postedAt: new Date(Date.now() - 86400000 * 2).toISOString(),
     skills: [{ skill: { name: 'React' } }, { skill: { name: 'JavaScript' } }]
   },
   {
     id: 'job-2',
     title: 'Backend Engineer (Node.js)',
+    company: 'NexData Inc.',
+    companyLogo: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=100&h=100&fit=crop&auto=format',
     description: 'Join our scalable backend team.',
     type: 'FULL_TIME',
+    employmentType: 'Full-Time',
     location: 'New York, NY',
     salaryMin: 130000,
     salaryMax: 160000,
+    currency: '$',
     status: 'ACTIVE',
-    createdAt: new Date().toISOString(),
+    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
+    postedAt: new Date(Date.now() - 86400000 * 5).toISOString(),
     skills: [{ skill: { name: 'Node.js' } }, { skill: { name: 'Express' } }]
   }
 ];

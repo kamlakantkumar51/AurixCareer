@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Code, ChevronDown, MoreHorizontal, ArrowRight, X, Rocket, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -143,8 +144,8 @@ export default function LanguagePracticeCard() {
       </button>
 
       {/* Coming Soon Modal */}
-      {showComingSoonModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+      {showComingSoonModal && createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div 
             className="bg-[#121826] border border-gray-800 rounded-3xl p-8 max-w-md w-full shadow-2xl relative flex flex-col items-center text-center animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
@@ -175,12 +176,13 @@ export default function LanguagePracticeCard() {
               Got it, I'll wait!
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Mobile Warning Modal */}
-      {showMobileWarning && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+      {showMobileWarning && createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div 
             className="bg-[#121826] border border-gray-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
@@ -199,7 +201,8 @@ export default function LanguagePracticeCard() {
               Understood
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

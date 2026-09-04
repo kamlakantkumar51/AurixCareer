@@ -107,11 +107,14 @@ export default function JobCard({ job, onClick, onSave, onApply }) {
       {/* Skills (if provided, mimicking the tags under the BA & Operations role in screenshot) */}
       {job.skills && job.skills.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-2">
-          {job.skills.slice(0, 4).map((skill, idx) => (
-            <span key={idx} className="px-2.5 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-[11px] font-medium rounded">
-              {skill}
-            </span>
-          ))}
+          {job.skills.slice(0, 4).map((skillObj, idx) => {
+            const skillName = typeof skillObj === 'string' ? skillObj : skillObj.skill?.name || skillObj.name;
+            return (
+              <span key={idx} className="px-2.5 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-[11px] font-medium rounded">
+                {skillName}
+              </span>
+            );
+          })}
         </div>
       )}
 

@@ -1,6 +1,6 @@
 import { getJobs } from './mockData';
 
-export const getRecommendedJobs = async () => {
+export const fetchRecommendedJobs = async () => {
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 500));
   return { success: true, data: getJobs() };
@@ -12,12 +12,12 @@ export const getJobById = async (id) => {
   return { success: !!job, data: job };
 };
 
-export const searchJobs = async (params) => {
+export const fetchJobSearch = async (params) => {
   await new Promise(resolve => setTimeout(resolve, 500));
   return { success: true, data: getJobs() };
 };
 
-export const saveJob = async (job) => {
+export const toggleSaveJob = async (job) => {
   await new Promise(resolve => setTimeout(resolve, 500));
   return { success: true, message: 'Job saved successfully (mock)' };
 };

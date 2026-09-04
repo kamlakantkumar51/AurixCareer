@@ -5,14 +5,18 @@ A modern, full-stack application designed to bridge the gap between talented stu
 ## 🚀 Features
 
 ### ✨ Beautiful 3D User Interface
-*Screenshot of the platform goes here*
-![AurixCareer UI Placeholder](https://placehold.co/1200x600/121826/ffffff?text=AurixCareer+Platform+UI)
+![Student Dashboard](./assets/screenshots/dashboard.png)
 
 ### For Students
 - **Smart Profile Building**: Create a comprehensive portfolio highlighting skills, projects, and education.
+- **AI Career Navigator**: Get personalized insights and career readiness scores.
+  ![AI Navigator Readiness](./assets/screenshots/ai_navigator_readiness.png)
+  ![AI Navigator Resume](./assets/screenshots/ai_navigator_resume.png)
 - **Skill Assessments & Practice**: Take assessments to prove proficiency and track problem-solving progress.
 - **Job Discovery**: Browse and apply for tailored job opportunities.
-- **Progress Tracking**: Visualize growth with personalized analytics and roadmaps.
+  ![Jobs List](./assets/screenshots/jobs.png)
+- **Saved Opportunities**: Keep track of roles you're interested in.
+  ![Saved Jobs](./assets/screenshots/saved_jobs.png)
 
 ### For Recruiters
 - **AI Hiring Insights**: Instantly identify top-matched candidates for active job postings with automated match scores.

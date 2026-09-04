@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Plus, CheckCircle, Clock, ExternalLink, Filter, Edit3, Bookmark, X } from 'lucide-react'
 import { fetchProblems } from '../../services/mockPracticeApi'
 
@@ -243,8 +244,8 @@ export default function ProblemTracker({ searchQuery }) {
       )}
 
       {/* Note & Status Modal */}
-      {selectedProblemForNote && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      {selectedProblemForNote && createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white dark:bg-[#121212] rounded-2xl shadow-xl w-full max-w-lg border border-gray-200 dark:border-gray-800/60 overflow-hidden animate-in zoom-in-95 duration-200">
             
             {/* Header */}
@@ -346,12 +347,13 @@ export default function ProblemTracker({ searchQuery }) {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Add Problem Modal */}
-      {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      {isAddModalOpen && createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white dark:bg-[#121212] rounded-2xl shadow-xl w-full max-w-md border border-gray-200 dark:border-gray-800/60 overflow-hidden animate-in zoom-in-95 duration-200">
             
             <div className="flex justify-between items-center p-5 pb-4 border-b border-gray-200 dark:border-gray-800/60">
@@ -428,7 +430,8 @@ export default function ProblemTracker({ searchQuery }) {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )

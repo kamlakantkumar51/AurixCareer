@@ -28,6 +28,8 @@ A modern, full-stack application designed to bridge the gap between talented stu
 - **Job Management**: Create and manage job postings with custom requirements and screening questions.
   ![Recruiter Postings](./assets/screenshots/recruiter_postings.png)
 - **Candidate Tracking**: Efficiently manage applications through various stages (Review, Shortlisted, Interview, Hired).
+- **Notifications & Updates**: Stay on top of your hiring pipeline with real-time application and interview notifications.
+  ![Notifications](./assets/screenshots/notifications.png)
 
 ## 💻 Tech Stack
 

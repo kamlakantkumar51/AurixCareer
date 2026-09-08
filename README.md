@@ -2481,6 +2481,863 @@ CORS
 ```
 
 ---
+# # 🛠️ Getting Started
+
+Follow the steps below to clone, install, configure, and run the complete application locally.
+
+The project contains two main applications:
+
+```text
+Next-Gen Recruitment & Student Prep Platform
+│
+├── backend   → Node.js + Express + Prisma
+│
+└── frontend  → React + Vite
+```
+
+---
+
+# 📋 Prerequisites
+
+Before starting the project, make sure the following software is installed on your system.
+
+### Required
+
+* **Node.js** — v18 or higher
+* **npm** — Comes with Node.js
+* **Git**
+* A modern web browser such as Chrome, Edge, or Firefox
+
+### Recommended
+
+```text
+Node.js 18+
+npm 9+
+Git 2+
+VS Code
+```
+
+---
+
+# 🔍 Check Installed Versions
+
+Open your terminal or command prompt and run:
+
+```bash
+node -v
+```
+
+```bash
+npm -v
+```
+
+```bash
+git --version
+```
+
+Example:
+
+```text
+node v20.x.x
+npm 10.x.x
+git version 2.x.x
+```
+
+If these commands return valid versions, your development environment is ready.
+
+---
+
+# 📥 Clone the Repository
+
+First, clone the project from GitHub.
+
+```bash
+git clone <repository-url>
+```
+
+Replace `<repository-url>` with the actual GitHub repository URL.
+
+For example:
+
+```bash
+git clone https://github.com/your-username/your-repository.git
+```
+
+After cloning, move into the project directory:
+
+```bash
+cd your-repository
+```
+
+Check the project files:
+
+```bash
+dir
+```
+
+For Linux/macOS:
+
+```bash
+ls
+```
+
+You should see something similar to:
+
+```text
+backend/
+frontend/
+assets/
+README.md
+```
+
+---
+
+# 📂 Project Setup
+
+The project contains separate frontend and backend applications.
+
+```text
+project-root/
+│
+├── backend/
+├── frontend/
+├── assets/
+└── README.md
+```
+
+Both applications need to be installed and started separately.
+
+---
+
+# ⚙️ Step 1 — Backend Setup
+
+Open the terminal inside the project root.
+
+Navigate to the backend:
+
+```bash
+cd backend
+```
+
+Install all backend dependencies:
+
+```bash
+npm install
+```
+
+This will install packages defined inside:
+
+```text
+backend/package.json
+```
+
+---
+
+# 🔐 Step 2 — Configure Environment Variables
+
+Inside the `backend` folder, create a new file named:
+
+```text
+.env
+```
+
+The structure should be:
+
+```text
+backend/
+│
+├── .env
+├── package.json
+├── prisma/
+└── src/
+```
+
+Add the following environment variables:
+
+```env
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key
+```
+
+### Example
+
+```env
+PORT=5000
+JWT_SECRET=my_super_secret_key_123
+```
+
+> ⚠️ Never upload your real `.env` file or secret keys to GitHub.
+
+---
+
+# 🗄️ Step 3 — Setup Prisma
+
+The backend uses **Prisma ORM** with SQLite.
+
+After installing dependencies, generate the Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+Then synchronize the Prisma schema with the database:
+
+```bash
+npx prisma db push
+```
+
+This will create/update the SQLite database based on:
+
+```text
+prisma/schema.prisma
+```
+
+---
+
+# 🔎 Step 4 — Open Prisma Studio
+
+If you want to visually inspect the database, run:
+
+```bash
+npx prisma studio
+```
+
+Prisma Studio provides a browser-based interface where you can inspect database records during development.
+
+You can use it to check entities such as:
+
+```text
+Users
+Students
+Recruiters
+Jobs
+Applications
+Notifications
+Skills
+Profiles
+```
+
+---
+
+# ▶️ Step 5 — Start the Backend
+
+After completing the database setup, start the backend development server:
+
+```bash
+npm run dev
+```
+
+The backend should start on:
+
+```text
+http://localhost:5000
+```
+
+You should see a message similar to:
+
+```text
+Server running on port 5000
+```
+
+> The exact console message may differ depending on the implementation.
+
+---
+
+# 🎨 Step 6 — Frontend Setup
+
+Do not stop the backend server.
+
+Open a **new terminal window/tab**.
+
+Navigate to the project root first if necessary:
+
+```bash
+cd ..
+```
+
+Then enter the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install frontend dependencies:
+
+```bash
+npm install
+```
+
+This installs all packages defined inside:
+
+```text
+frontend/package.json
+```
+
+---
+
+# ▶️ Step 7 — Start the Frontend
+
+Run:
+
+```bash
+npm run dev
+```
+
+Vite will start the development server.
+
+The frontend should be available at:
+
+```text
+http://localhost:5173
+```
+
+Open the URL in your browser.
+
+---
+
+# 🚀 Complete Setup Commands
+
+If you already have Node.js and Git installed, the complete process looks like this:
+
+### Clone
+
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
+
+### Backend
+
+```bash
+cd backend
+npm install
+npx prisma generate
+npx prisma db push
+npm run dev
+```
+
+### Frontend
+
+Open a **new terminal**:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+# 🖥️ Terminal Setup
+
+You should ideally have two terminals running simultaneously.
+
+### Terminal 1 — Backend
+
+```bash
+cd backend
+npm run dev
+```
+
+Backend:
+
+```text
+http://localhost:5000
+```
+
+### Terminal 2 — Frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Architecture:
+
+```text
+┌───────────────────────────┐
+│        Browser            │
+│                           │
+│  React + Vite Frontend    │
+│  localhost:5173           │
+└─────────────┬─────────────┘
+              │
+              │ HTTP / API
+              ▼
+┌───────────────────────────┐
+│     Express Backend       │
+│     localhost:5000        │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│      Prisma ORM           │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│       SQLite DB           │
+└───────────────────────────┘
+```
+
+---
+
+# 🔗 Frontend & Backend Connection
+
+The frontend communicates with the backend through API requests.
+
+Example:
+
+```text
+React Application
+       ↓
+Axios
+       ↓
+Express API
+       ↓
+Controller
+       ↓
+Prisma
+       ↓
+SQLite
+```
+
+Make sure both servers are running.
+
+```text
+Frontend → http://localhost:5173
+Backend  → http://localhost:5000
+```
+
+---
+
+# 🌐 Verify the Application
+
+Once both servers are running:
+
+### 1. Open the frontend
+
+```text
+http://localhost:5173
+```
+
+### 2. Check the landing/login page
+
+You should see the application interface.
+
+### 3. Test registration
+
+Create a new student/recruiter account.
+
+### 4. Test login
+
+Login using the registered credentials.
+
+### 5. Test student functionality
+
+Verify:
+
+* Dashboard
+* Profile
+* Skills
+* Practice
+* Notes
+* AI Career Navigator
+* Jobs
+* Saved Jobs
+* Applications
+* Notifications
+
+### 6. Test recruiter functionality
+
+Verify:
+
+* Recruiter Dashboard
+* Job Posting
+* Candidates
+* Candidate Matching
+* Application Tracking
+* Notifications
+* Analytics
+
+---
+
+# 🔄 Fresh Installation
+
+If you want to completely reinstall dependencies, delete the existing `node_modules` folders.
+
+### Windows
+
+```bash
+rmdir /s /q node_modules
+```
+
+### macOS/Linux
+
+```bash
+rm -rf node_modules
+```
+
+Then reinstall:
+
+```bash
+npm install
+```
+
+Do this separately inside both:
+
+```text
+backend/
+frontend/
+```
+
+---
+
+# 🧹 Reset Prisma Database
+
+During development, if you want to recreate the database from the Prisma schema, you can use:
+
+```bash
+npx prisma db push
+```
+
+For a complete development reset, use the appropriate Prisma reset command only if you are comfortable deleting existing local database data.
+
+> ⚠️ Database reset operations can delete existing development records.
+
+---
+
+# 🔧 Useful Development Commands
+
+## Backend
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Generate Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+Push database schema:
+
+```bash
+npx prisma db push
+```
+
+Open Prisma Studio:
+
+```bash
+npx prisma studio
+```
+
+---
+
+## Frontend
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Create production build:
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+# 📦 Install Dependencies Again
+
+If `node_modules` is missing or dependencies are corrupted:
+
+### Backend
+
+```bash
+cd backend
+npm install
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+# 🚨 Common Problems & Solutions
+
+## ❌ `npm is not recognized`
+
+Install Node.js and restart your terminal.
+
+Verify:
+
+```bash
+node -v
+npm -v
+```
+
+---
+
+## ❌ `git is not recognized`
+
+Install Git and restart your terminal.
+
+Verify:
+
+```bash
+git --version
+```
+
+---
+
+## ❌ Prisma Client Error
+
+Run:
+
+```bash
+npx prisma generate
+```
+
+Then restart the backend:
+
+```bash
+npm run dev
+```
+
+---
+
+## ❌ Database Does Not Exist
+
+Run:
+
+```bash
+npx prisma db push
+```
+
+Then:
+
+```bash
+npx prisma generate
+```
+
+---
+
+## ❌ CORS Error
+
+Check:
+
+```text
+Frontend URL
+Backend URL
+CORS configuration
+```
+
+Make sure the backend is running on:
+
+```text
+http://localhost:5000
+```
+
+and frontend on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## ❌ Frontend Cannot Reach Backend
+
+First verify the backend is running:
+
+```bash
+cd backend
+npm run dev
+```
+
+Then verify the frontend API configuration points to the correct backend URL.
+
+---
+
+## ❌ Port Already in Use
+
+If port `5000` or `5173` is already being used, either stop the existing process or configure another port.
+
+Backend:
+
+```env
+PORT=5001
+```
+
+Then restart the backend.
+
+---
+
+## ❌ Dependencies Are Not Installing
+
+Try:
+
+```bash
+npm cache clean --force
+```
+
+Then:
+
+```bash
+npm install
+```
+
+---
+
+# 🔒 Important Security Notes
+
+Never commit the following to GitHub:
+
+```text
+.env
+node_modules/
+*.db
+database files containing sensitive data
+private API keys
+JWT secrets
+```
+
+Recommended `.gitignore` entries:
+
+```gitignore
+node_modules/
+.env
+.env.*
+!.env.example
+
+*.db
+*.sqlite
+*.sqlite3
+
+dist/
+build/
+
+.DS_Store
+```
+
+---
+
+# 🧪 Recommended First Run Checklist
+
+After cloning the repository:
+
+```text
+☐ Node.js installed
+☐ npm working
+☐ Git working
+☐ Repository cloned
+☐ Backend dependencies installed
+☐ .env created
+☐ JWT_SECRET configured
+☐ Prisma Client generated
+☐ Database created
+☐ Backend started
+☐ Frontend dependencies installed
+☐ Frontend started
+☐ Browser opened
+☐ Registration tested
+☐ Login tested
+☐ Student dashboard tested
+☐ Recruiter dashboard tested
+```
+
+---
+
+# ⚡ Quick Start
+
+For developers who already have Node.js and Git installed:
+
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
+
+Backend:
+
+```bash
+cd backend
+npm install
+npx prisma generate
+npx prisma db push
+npm run dev
+```
+
+Open a new terminal:
+
+```bash
+cd <repository-folder>/frontend
+npm install
+npm run dev
+```
+
+Then open:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 🏁 You're Ready!
+
+If everything has been configured correctly, you should now have:
+
+```text
+Frontend
+http://localhost:5173
+       │
+       ▼
+Backend
+http://localhost:5000
+       │
+       ▼
+Prisma
+       │
+       ▼
+SQLite
+```
+
+The complete **Next-Gen Recruitment & Student Prep Platform** is now ready for local development.
+
 
 ## 💙 Final Note
 
